@@ -50,5 +50,33 @@ namespace Edge
             imageBox1.Image = imgCanny;
         }
 
+        private void sobelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (imgInput == null)
+            {
+                return;
+            }
+                Image<Gray, byte> imgGray = imgInput.Convert<Gray, byte>();
+                Image<Gray, float> imgSobel = new Image<Gray, float>(imgInput.Width, imgInput.Height, new Gray(0));
+
+                imgSobel = imgGray.Sobel(1,1,5);
+
+                   imageBox1.Image = imgSobel;
+            
+        }
+
+        private void laplacianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (imgInput == null)
+            {
+                return;
+            }
+            Image<Gray, byte> imgGray = imgInput.Convert<Gray, byte>();
+            Image<Gray, float> imgLaplace = new Image<Gray, float>(imgInput.Width, imgInput.Height, new Gray(0));
+
+            imgLaplace = imgLaplace.Laplace(5);
+
+            imageBox1.Image = imgLaplace;
+        }
     }
 }
